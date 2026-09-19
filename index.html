@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>For Jinwoo — 20</title>
+<meta name="description" content="A birthday film for Jinwoo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- grain / stars overlay, always present -->
+<div class="grain" aria-hidden="true"></div>
+<canvas id="stars" aria-hidden="true"></canvas>
+
+<!-- ============ FLOATING NAV ============ -->
+<button id="navToggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+  <span></span><span></span><span></span>
+</button>
+<nav id="navMenu" class="nav-menu" aria-hidden="true">
+  <ul>
+    <li><a data-target="#loading">Beginning</a></li>
+    <li><a data-target="#before-we-met">Before We Met</a></li>
+    <li><a data-target="#timeline">Our Story</a></li>
+    <li><a data-target="#cinema">Memories</a></li>
+    <li><a data-target="#little-things">Little Things</a></li>
+    <li><a data-target="#receipts">The Receipts</a></li>
+    <li><a data-target="#twenty-things">20 Things</a></li>
+    <li><a data-target="#birthday">Birthday</a></li>
+    <li><a data-target="#secret">Secret</a></li>
+    <li><a data-target="#letter">Letter</a></li>
+    <li><a data-target="#future">Future</a></li>
+    <li><a data-target="#ending">End</a></li>
+  </ul>
+</nav>
+
+<!-- ============ FLOATING MUSIC CONTROL ============ -->
+<button id="musicToggle" class="music-toggle" aria-label="Play our song">
+  <span id="musicIcon">♫</span>
+  <span id="musicLabel">PLAY OUR SONG</span>
+</button>
+<audio id="bgMusic" loop preload="none"></audio>
+
+<!-- ============ SECTION 1 — LOADING ============ -->
+<section id="loading" class="screen loading-screen">
+  <div class="loading-inner">
+    <p class="date-mark">20.09.2006</p>
+    <div class="loader-bar" aria-hidden="true"><span></span></div>
+    <p class="loading-line">A little something for Jinwoo&hellip;</p>
+    <button id="beginBtn" class="ghost-btn">BEGIN →</button>
+  </div>
+</section>
+
+<!-- ============ SECTION 2 — CINEMATIC INTRO ============ -->
+<section id="intro" class="screen intro-screen" hidden>
+  <button id="skipIntro" class="skip-btn">Skip Intro</button>
+  <div id="introSequence" class="intro-sequence"></div>
+</section>
+
+<!-- MAIN EXPERIENCE (revealed after intro) -->
+<main id="mainSite" hidden>
+
+  <!-- ============ SECTION 3 — HERO ============ -->
+  <section id="hero" class="section hero-section">
+    <video id="heroVideo" class="hero-video" muted loop playsinline preload="metadata" poster=""></video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-name" id="heroName">JINWOO</h1>
+      <p class="hero-age" id="heroAge">20</p>
+      <p class="hero-line">Born on the same day.<br>Met 18 years later.</p>
+      <p class="scroll-cue">SCROLL TO REMEMBER ↓</p>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 4 — BEFORE WE MET ============ -->
+  <section id="before-we-met" class="section before-section">
+    <h2 class="section-title">Before We Met</h2>
+    <p class="reveal-line">2006 → 2024</p>
+    <p class="reveal-line">For 18 years, you were living your story.</p>
+    <p class="reveal-line">And for 18 years, I was living mine.</p>
+    <p class="reveal-line">We didn't know each other existed.</p>
+    <p class="reveal-line">Until our stories crossed.</p>
+
+    <div class="paths-wrap" aria-hidden="true">
+      <svg id="pathsSvg" viewBox="0 0 1000 300" preserveAspectRatio="none">
+        <path id="pathA" class="life-path" d="M0,60 C300,60 500,150 500,150" fill="none"/>
+        <path id="pathB" class="life-path" d="M0,240 C300,240 500,150 500,150" fill="none"/>
+        <circle id="meetPoint" cx="500" cy="150" r="0" class="meet-point"/>
+      </svg>
+    </div>
+    <p class="crossed-line" id="crossedLine">OUR STORIES CROSSED.</p>
+  </section>
+
+  <!-- ============ SECTION 5 — TIMELINE ============ -->
+  <section id="timeline" class="section timeline-section">
+    <h2 class="section-title">Our Timeline</h2>
+    <div class="timeline-open">
+      <p>20.09.2006</p>
+      <p class="dim">Two stories began.</p>
+      <p>2024</p>
+      <p class="dim">The year our paths crossed.</p>
+    </div>
+    <div id="timelineTrack" class="timeline-track"></div>
+  </section>
+
+  <!-- ============ SECTION 6 — MEMORY CINEMA ============ -->
+  <section id="cinema" class="section cinema-section">
+    <h2 class="section-title">Memory Cinema</h2>
+    <div id="cinemaCarousel" class="carousel" tabindex="0">
+      <button class="carousel-arrow prev" id="carPrev" aria-label="Previous memory">‹</button>
+      <div id="carouselTrack" class="carousel-track"></div>
+      <button class="carousel-arrow next" id="carNext" aria-label="Next memory">›</button>
+    </div>
+    <div id="carouselDots" class="carousel-dots"></div>
+  </section>
+
+  <!-- ============ SECTION 7 — DO YOU REMEMBER? ============ -->
+  <section id="remember" class="section remember-section">
+    <h2 class="section-title">Do You Remember?</h2>
+    <div id="rememberGrid" class="remember-grid"></div>
+  </section>
+
+  <!-- ============ SECTION 8 — THE LITTLE THINGS ============ -->
+  <section id="little-things" class="section little-things-section">
+    <h2 class="section-title">The Little Things</h2>
+    <p class="section-subtitle">The moments that didn't seem important at the time, but somehow became my favourites.</p>
+    <div id="collageGrid" class="collage-grid"></div>
+  </section>
+
+  <!-- ============ SECTION 9 — THE RECEIPTS ============ -->
+  <section id="receipts" class="section receipts-section">
+    <h2 class="section-title">The Receipts</h2>
+    <p class="section-subtitle">Evidence that we actually behaved like this.</p>
+    <div id="receiptsGrid" class="receipts-grid"></div>
+  </section>
+
+  <!-- ============ SECTION 10 — 20 THINGS ============ -->
+  <section id="twenty-things" class="section twenty-section">
+    <h2 class="section-title">20 Things I Love About You</h2>
+    <div id="twentyGrid" class="twenty-grid"></div>
+  </section>
+
+  <!-- ============ SECTION 11 — SHARED BIRTHDAY ============ -->
+  <section id="birthday" class="section birthday-section">
+    <div id="birthdaySequence" class="birthday-sequence"></div>
+    <canvas id="celebrateCanvas" aria-hidden="true"></canvas>
+  </section>
+
+  <!-- ============ SECTION 12 — RANDOM MEMORY ============ -->
+  <section id="random-memory" class="section random-section">
+    <h2 class="section-title">Show Me A Random Memory</h2>
+    <div id="randomCard" class="random-card">
+      <p class="placeholder-text">Click below to pull a memory at random.</p>
+    </div>
+    <button id="randomBtn" class="ghost-btn">SHOW ME A RANDOM MEMORY</button>
+    <p class="tiny-line">You can keep clicking. I have plenty of evidence.</p>
+  </section>
+
+  <!-- ============ SECTION 13 — SECRET MEMORY ============ -->
+  <section id="secret" class="section secret-section">
+    <p class="reveal-line">I saved one more thing for you.</p>
+    <div id="secretLock" class="secret-lock">
+      <div class="lock-icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="56" height="56">
+          <rect x="14" y="28" width="36" height="26" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M20 28 V18 a12 12 0 0 1 24 0 v10" fill="none" stroke="currentColor" stroke-width="2"/>
+          <circle cx="32" cy="40" r="3" fill="currentColor"/>
+        </svg>
+      </div>
+      <button id="unlockBtn" class="ghost-btn">UNLOCK</button>
+      <div id="unlockForm" class="unlock-form" hidden>
+        <label for="secretPass" class="sr-only">Enter password</label>
+        <input id="secretPass" type="password" placeholder="Enter the password" autocomplete="off">
+        <button id="unlockSubmit" class="ghost-btn small">UNLOCK</button>
+        <p id="unlockMsg" class="unlock-msg" role="status"></p>
+      </div>
+      <div id="secretContent" class="secret-content" hidden></div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 14 — ONE LAST THING ============ -->
+  <section id="one-last-thing" class="section transition-section">
+    <div id="oneLastSeq" class="reveal-sequence"></div>
+  </section>
+
+  <!-- ============ SECTION 15 — PERSONAL LETTER ============ -->
+  <section id="letter" class="section letter-section">
+    <h2 class="section-title">For You</h2>
+    <div class="letter-paper">
+      <p id="letterText" class="letter-text"></p>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 16 — FUTURE TIME CAPSULE ============ -->
+  <section id="future" class="section future-section">
+    <h2 class="section-title">Future Time Capsule</h2>
+    <div id="envelopeGrid" class="envelope-grid"></div>
+  </section>
+
+  <!-- ============ SECTION 17 — EMPTY PHOTO FRAME ============ -->
+  <section id="empty-frame" class="section frame-section">
+    <div class="empty-frame">
+      <span class="qmark">?</span>
+    </div>
+    <p class="frame-label">OUR NEXT MEMORY</p>
+    <p class="reveal-line">This space is intentionally empty.</p>
+    <p class="reveal-line">Because we haven't made this memory yet.</p>
+    <p class="tbc">TO BE CONTINUED&hellip;</p>
+  </section>
+
+  <!-- ============ SECTION 18 — FINAL ENDING ============ -->
+  <section id="ending" class="section ending-section">
+    <div id="endingSequence" class="reveal-sequence"></div>
+    <video id="finalVideo" class="final-video" muted loop playsinline preload="metadata" hidden></video>
+    <p class="chapter-line">CHAPTER 20 — COMPLETE</p>
+    <p class="chapter-line dim">NEXT CHAPTER — TO BE WRITTEN</p>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
